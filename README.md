@@ -5,11 +5,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Known Vulnerabilities](https://snyk.io/test/github/dreambo8563/pt/badge.svg?targetFile=package.json)](https://snyk.io/test/github/dreambo8563/pt?targetFile=package.json)
 
-![](https://raw.githubusercontent.com/dreambo8563/Pt/master/src/favicon.256x256.png)
-
 # Introduction
 
-Pt is a simple tool to generate the basic performance report of your website.
+Now, WPT is a developement tool to generate the basic performance report of your website.
 
 ### Easy to Use
 
@@ -24,7 +22,7 @@ Pt is a simple tool to generate the basic performance report of your website.
 
 - mac & linux
   https://github.com/dreambo8563/Pt/releases
-- windows will be supported soon
+- it now support Windows NT.
 
 ### Report
 
