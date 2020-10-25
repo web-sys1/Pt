@@ -2,6 +2,7 @@ import { Menu, app, MenuItemConstructorOptions, shell } from 'electron';
 
 export function initMenu() {
   const isMac = process.platform === 'darwin';
+  // const isWin = process.platform === 'win32';
   const template = [
     // { role: 'appMenu' }
     ...(process.platform === 'darwin'

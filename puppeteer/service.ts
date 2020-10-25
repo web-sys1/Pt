@@ -34,10 +34,9 @@ export function registerMainChannels(win) {
       parent: win,
       x: 0,
       y: 0,
-      width: width / 2,
-      height: height / 2,
+      width: width / 2 * 2.1,
+      height: height / 2 * 1.89,
       fullscreen: false,
-      fullscreenable: false,
       darkTheme: true
       //   minWidth: 700
     });

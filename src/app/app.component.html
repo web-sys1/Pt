@@ -4,10 +4,10 @@
       name="url"
       [(ngModel)]="url"
       matInput
-      placeholder="Enter the website url starts with http(s)"
+      placeholder="Enter the website url which starts with http(s)."
     />
   </mat-form-field>
-  <button
+  <button class="btn btn-default"
     [@searchStates]="searching ? 'searching' : 'done'"
     [disabled]="searching"
     (click)="search()"

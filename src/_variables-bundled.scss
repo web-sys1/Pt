@@ -1,0 +1,29 @@
+// Colors
+$color-white: #FFFFFF;
+$color-light: #FAFAFA;
+$color-grey: #888888;
+$color-brown: #B18D5B;
+$color-black: #ec6262;
+
+$theme-colors: (
+        "white": $color-white,
+        "light": $color-light,
+        "grey": $color-grey,
+        "brown": $color-brown,
+        "black": $color-black,
+);
+
+// Body
+$body-bg: $color-light;
+$body-color: $color-grey;
+
+// Misc
+$box-shadow: 0 0 50px rgba(99, 37, 37, 0.274);
+
+// Typography
+$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+
+// Button
+$btn-border-radius: 0;
+$btn-border-width: 2px;
+$btn-font-weight: bold;

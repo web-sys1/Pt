@@ -1,5 +1,5 @@
 {
-  "productName": "Pt",
+  "productName": "WebPerformance_ResolutionTool",
   "directories": {
     "output": "release/"
   },
@@ -20,7 +20,7 @@
     "!tslint.json",
     "!results.html"
   ],
-  "appId": "com.dreambo8563.pt",
+  "appId": "com.WebSRC.webreporting",
   "win": {
     "icon": "dist",
     "target": ["portable"]

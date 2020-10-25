@@ -3,15 +3,40 @@
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
+    "baseUrl": "./",
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "downlevelIteration": true,
     "target": "es5",
-    "typeRoots": ["node_modules/@types"],
-    "lib": ["es2017", "es2016", "es2015", "dom"]
+    "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "es2016",
+      "es2015",
+      "dom"
+    ],
+    "paths": {
+      "root": [
+        "dist/root"
+      ],
+      "root/*": [
+        "dist/root/*"
+      ]
+    }
   },
-  "include": ["main.ts", "src/**/*", "notification/**/*", "puppeteer/**/*"],
-  "exclude": ["node_modules"]
+  "include": [
+    "main.ts",
+    "src/**/*",
+    "src/app/providers/**/*",
+    "notification/**/*",
+    "puppeteer/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

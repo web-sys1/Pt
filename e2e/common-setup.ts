@@ -32,7 +32,6 @@ export default function setup() {
 
     browser.timeouts('script', 15000);
   });
-
   afterEach(function () {
     if (this.app && this.app.isRunning()) {
       return this.app.stop();

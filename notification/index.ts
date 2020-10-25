@@ -1,5 +1,5 @@
 import { ipcMain, Notification } from 'electron';
-// regerister channel
+// regerister channel.
 ipcMain.on('message', (event, ops: { title: string; body: string }) => {
   const supported = Notification.isSupported();
   if (supported) {

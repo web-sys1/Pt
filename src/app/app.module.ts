@@ -4,9 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-// import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 
 import { ElectronService } from './providers/electron.service';
+
+import { OnTrigger } from './modal-dialog';
+import { ModalServiceModule } from './providers/modal-service/modal-service.module';
 
 import { WebviewDirective } from './directives/webview.directive';
 
@@ -25,10 +28,11 @@ import {
 import { BytesToKBPipe } from './pipes/bytesToKB';
 
 @NgModule({
-  declarations: [AppComponent, WebviewDirective, BytesToKBPipe],
+  declarations: [AppComponent, OnTrigger, WebviewDirective, BytesToKBPipe],
   imports: [
     MatFormFieldModule,
     MatSortModule,
+    ModalServiceModule.forRoot(),
     MatProgressSpinnerModule,
     MatSelectModule,
     MatInputModule,
@@ -36,9 +40,10 @@ import { BytesToKBPipe } from './pipes/bytesToKB';
     MatTableModule,
     BrowserModule,
     FormsModule,
-    // AppRoutingModule,
+    AppRoutingModule,
     BrowserAnimationsModule
   ],
+  entryComponents: [ OnTrigger ],
   providers: [ElectronService],
   bootstrap: [AppComponent]
 })

@@ -46,7 +46,7 @@ export async function runLighthouse(url: string) {
   const remoteDebugPort = new URL(browser.wsEndpoint()).port;
 
   // Watch for Lighthouse to open url, then customize network conditions.
-  // Note: re-establishes throttle settings every time LH reloads the page. Shooooould be ok :)
+  // Note: re-establishes throttle settings every time LH reloads the page. Should be ok :)
   browser.on('targetchanged', async target => {
     try {
       const page = await target.page();
@@ -58,28 +58,33 @@ export async function runLighthouse(url: string) {
           offline: false,
           // values of 0 remove any active throttling. crbug.com/456324#c9
           latency: 0,
-          downloadThroughput: Math.floor((1.6 * 1024 * 1024) / 8), // 1.6Mbps
-          uploadThroughput: Math.floor((750 * 1024) / 8) // 750Kbps
+          downloadThroughput: Math.floor((1.6 * 1024 * 1024) / 8), // 1.6Mbps to 209Kbps (or 209Kbps-1.6Mbps)
+          uploadThroughput: Math.floor((750 * 1024) / 8) // 96-750Kbps
+        // tslint:disable-next-line: no-unused-expression
         });
       }
     } catch (error) {
       const e = new Notification({
-        title: 'Lighthouse Testing Error',
+        title: 'Lighthouse Testing [General Error]',
         body: error
       });
       e.show();
     }
   });
 
-  // Lighthouse opens url and tests it.
-  // Note: Possible race with Puppeteer observing the tab opening using `targetchanged` above.
+   // Lighthouse opens url and tests it.
+   // Note: Possible race with Puppeteer observing the tab opening using `targetchanged` above.   "maxWaitForLoad": 45000,
+
+
   const { report } = await lighthouse(url, {
     port: remoteDebugPort,
+    emulatedFormFactor: 'desktop',
+    maxWaitForLoad: 590104,
     output: 'html',
-    // logLevel: 'info',
-    disableNetworkThrottling: true
-    //  disableCpuThrottling: true,
-    //  disableDeviceEmulation: true,
+    logLevel: 'info',
+    throttling: {
+       cpuSlowdownMultiplier: 1
+     },
   });
   const userDataPath = (app || remote.app).getPath('userData');
 
@@ -87,7 +92,7 @@ export async function runLighthouse(url: string) {
     fs.writeFileSync(path.join(userDataPath, 'results.html'), report);
   } catch (error) {
     const e = new Notification({
-      title: 'Writing Lighthouse Report Error',
+      title: 'General Writing Lighthouse Report - Error',
       body: error
     });
     e.show();

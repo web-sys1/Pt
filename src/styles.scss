@@ -5,8 +5,8 @@ body {
   padding: 0;
 
   height: calc(100vh - 100px);
-  background-color: rgb(48, 48, 48);
-  color: white;
+  background-color:  rgb(96, 112, 141);
+  color: #9bf7fd;
 }
 
 html {
@@ -17,6 +17,11 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
   margin: 50px;
 }
+
+div.modal {
+  color: rgb(97, 30, 30);
+}
+
 .loader-container {
   margin: 0;
   position: fixed;
@@ -36,7 +41,7 @@ body {
   height: 10em;
   font-size: 25px;
   box-sizing: border-box;
-  border-top: 0.3em solid hotpink;
+  border-top: 0.3em solid blue;
   border-radius: 50%;
   position: relative;
   animation: rotating 2s ease-in-out infinite;
@@ -66,10 +71,10 @@ body {
 
 .loader span {
   position: absolute;
-  color: white;
+  color: #0066ff;
   width: inherit;
   height: inherit;
-  text-align: center;
+  text-align:  center;
   line-height: 10em;
   font-family: sans-serif;
   animation: rotating 2s linear infinite;

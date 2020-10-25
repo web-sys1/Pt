@@ -92,7 +92,6 @@ const EVENTS = [
 // }
 
 const stats = new Map();
-
 /**
  * @param {!Object} coverage
  * @param {string} type Either "css" or "js" to indicate which type of coverage.
@@ -140,15 +139,17 @@ async function collectCoverage(url: string) {
 
   // Do separate load for each event. See
   // https://github.com/GoogleChrome/puppeteer/issues/1887
+
   const collectPromises = EVENTS.map(async event => {
     const page = await browser.newPage();
-
+    // Fetch promises.
     await Promise.all([
       page.coverage.startJSCoverage(),
       page.coverage.startCSSCoverage()
     ]);
 
-    await page.goto(url, { waitUntil: event });
+    await page.setUserAgent(window.navigator.userAgent);
+    await page.goto(url, { waitUntil: event, timeout: 588428 }); // always specify configuration to the page destination.
     // await page.waitForNavigation({waitUntil: event});
 
     const [jsCoverage, cssCoverage] = await Promise.all([

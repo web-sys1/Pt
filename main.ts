@@ -13,26 +13,20 @@ serve = args.some(val => val === '--serve');
 async function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
-    x: 0,
-    y: 0,
-    // width: size.width,
-    // height: size.height,
-    fullscreen: true,
-    minWidth: 1024,
+    width: 1560,
+    height: 1245,
+    minWidth: 1403,
+   // minHeight: 680,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true, enableRemoteModule: true
     },
     darkTheme: true
   });
 
-  registerMainChannels(win);
+ registerMainChannels(win);
 
   if (serve) {
-    require('electron-reload')(__dirname, {
-      electron: require(`${__dirname}/node_modules/electron`)
-    });
-
-    win.loadURL('http://localhost:4200');
+     win.loadURL('http://localhost:4200');
   } else {
     win.loadURL(
       url.format({

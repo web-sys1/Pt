@@ -1,6 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { ElectronService } from './providers/electron.service';
 import { AppConfig } from '../environments/environment';
+import { ModalService } from './providers/modal-service/modal-service.service';
+import { ModalRef } from './providers/modal-service/models/modal-ref.model';
+import { OnTrigger } from './modal-dialog';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import {
   trigger,
@@ -10,7 +13,6 @@ import {
   state
 } from '@angular/animations';
 
-// import { FormControl, Validators } from '@angular/forms';
 export interface CoverageRow {
   url: string;
   jsUsed: number;
@@ -66,6 +68,7 @@ export class AppComponent implements OnInit {
   dataSource: MatTableDataSource<CoverageRow>;
 
   constructor(
+    private modalService: ModalService,
     private electronService: ElectronService,
     private changeDetectorRefs: ChangeDetectorRef
   ) {
@@ -112,15 +115,25 @@ export class AppComponent implements OnInit {
     this.electronService.ipcRenderer.on(
       'report.error',
       (_: any, err: string) => {
-        this.searching = false;
+        this.searching = false; // search input is disabled.
 
         this.electronService.sendMessage({
-          title: 'error',
+          title: 'Error Messge',
           body: err
-        });
+        }); console.log(err)
         this.refresPage();
       }
     );
+  }
+  openDialog(dialog: { title: string; body: string }) {
+    // this will open the dialog. it was defined by ModalService
+    try {
+       const modalRef = this.modalService.open(OnTrigger, {title: dialog.title, message: dialog.body});
+       modalRef.onResult().subscribe(
+        closed => console.log('closed', closed), () => console.log('completed trace.'));
+      } catch (error) {
+        throw new Error('Cannot perform this action from that module. ' + '[Unhandled Exception Error: ' + error.message + ']');
+      }
   }
   collectCode() {
     this.searching = true;
@@ -141,17 +154,19 @@ export class AppComponent implements OnInit {
   }
   urlCheck() {
     if (!this.url) {
-      this.electronService.sendMessage({
-        title: 'warning',
+      this.openDialog({
+        title: 'Field required',
         body: 'Please input the whole URL'
       });
       return false;
     }
     if (!(this.url.startsWith('http') || this.url.startsWith('https'))) {
-      this.electronService.sendMessage({
-        title: 'warning',
-        body: 'the URL should starts with http/https'
+      // tslint:disable-next-line: no-unused-expression
+      this.openDialog({
+        title: 'Incorrect or missing URL',
+        body: 'The URL should start with http/https.'
       });
+
       return false;
     }
     return true;
