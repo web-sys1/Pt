@@ -148,7 +148,8 @@ async function collectCoverage(url: string) {
       page.coverage.startCSSCoverage()
     ]);
 
-    await page.setUserAgent(window.navigator.userAgent);
+   // await page.setUserAgent(window.navigator.userAgent);
+   
     await page.goto(url, { waitUntil: event, timeout: 588428 }); // always specify configuration to the page destination.
     // await page.waitForNavigation({waitUntil: event});
 
