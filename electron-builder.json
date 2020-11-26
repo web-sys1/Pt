@@ -20,10 +20,20 @@
     "!tslint.json",
     "!results.html"
   ],
+  
   "appId": "com.WebSRC.webreporting",
+  
   "win": {
     "icon": "dist",
-    "target": ["portable"]
+	"legalTrademarks": "(c) 2020 WebSRC",
+    "publisherName": "WebSRC",
+    "target": "nsis",
+  },
+  
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true
   },
   "dmg": {
     "icon": "dist",

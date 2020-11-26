@@ -120,7 +120,7 @@ export class AppComponent implements OnInit {
         this.electronService.sendMessage({
           title: 'Error Messge',
           body: err
-        }); console.log(err)
+        }); console.log(err);
         this.refresPage();
       }
     );
