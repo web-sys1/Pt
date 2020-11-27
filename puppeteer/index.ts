@@ -1,5 +1,10 @@
 import * as fs from 'fs';
+import * as path from 'path';
 import * as puppeteer from 'puppeteer-core';
+import {remote, app} from 'electron'
+
+const remotePath = (app || remote.app).getAppPath()
+const unpackedApp = path.join(remotePath).replace('app.asar', 'app.asar.unpacked')
 
 export class Puppeteer {
   chromePath: string;
@@ -15,8 +20,9 @@ export class Puppeteer {
   }
   _getDefaultOsPath() {
     if (process.platform === 'win32') {
-      return 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe';
-    } else {
+      // return 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe';
+	  return unpackedApp + '\\puppeteer\\chrome-win\\chrome.exe'
+	  } else {
       return '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
     }
   }
