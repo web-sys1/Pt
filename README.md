@@ -20,9 +20,7 @@ Another cheapest tool to generate the basic performance report of your website.
 
 ### Download
 
-- mac & linux
-  https://github.com/dreambo8563/Pt/releases
-- windows will be supported soon
+- windows, mac & linux.
 
 ### Report
 
