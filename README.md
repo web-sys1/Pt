@@ -7,7 +7,7 @@
 
 # Introduction
 
-Another cheapest tool to generate the basic performance report of your website.
+**Web Performance Resolution Tool** (**WP[R]T**) - Another cheapest tool to generate the basic performance report of your website.
 
 ### Easy to Use
 
