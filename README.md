@@ -7,7 +7,7 @@
 
 # Introduction
 
-Pt is a simple tool to generate the basic performance report of your website.
+Another cheapest tool to generate the basic performance report of your website.
 
 ### Easy to Use
 
